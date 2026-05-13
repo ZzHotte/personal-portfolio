@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shared Whiteboard — Zoe Zhang</title>
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: hsl(0, 0%, 7%);
+      --surface: hsl(240, 2%, 13%);
+      --surface-2: hsl(240, 1%, 17%);
+      --text: hsl(0, 0%, 98%);
+      --muted: hsla(0, 0%, 84%, 0.75);
+      --accent: hsl(45, 100%, 72%);
+      --border: hsl(0, 0%, 22%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      font-size: 0.92em;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .back span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 600;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .diagrams {
+      margin-bottom: 8px;
+    }
+
+    figure.hero {
+      margin: 0 0 24px;
+    }
+
+    figure.hero:last-child {
+      margin-bottom: 36px;
+    }
+
+    .hero {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .figure-caption {
+      margin: 0;
+      padding: 12px 16px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: var(--surface-2);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0 0 16px;
+      padding-left: 1.2em;
+      color: var(--muted);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-top: 24px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      color: hsl(0, 0%, 84%);
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <a class="back" href="/"><span aria-hidden="true">←</span> Back to portfolio</a>
+
+    <h1>Shared Whiteboard</h1>
+    <p class="meta">Distributed application · System design</p>
+
+    <section class="diagrams" aria-label="Architecture diagrams">
+      <figure class="hero">
+        <img src="/assets/images/shared_whiteboard.png" alt="Server cluster, clients, and service registry: registration, discovery, and callback RPC" loading="eager">
+        <figcaption class="figure-caption">
+          Distributed architecture: microservices (user management, whiteboard sync, join requests), shared SQL store,
+          Consul/etcd registry, and callback-based real-time updates to clients.
+        </figcaption>
+      </figure>
+
+      <figure class="hero">
+        <img src="/assets/images/whiteboard_user.png" alt="Collaborative whiteboard end-user use case: editors, viewers, WebSockets, HTTPS, and backend services" loading="lazy">
+        <figcaption class="figure-caption">
+          End-user view: multi-user collaboration over WebSockets, HTTPS for auth, and backend services for metadata,
+          access control, and object storage.
+        </figcaption>
+      </figure>
+    </section>
+
+    <h2>Overview</h2>
+    <p>
+      A real-time collaborative whiteboard where multiple clients draw and see updates with low latency. The design
+      separates transport, session state, and persistence so the system can scale horizontally and recover cleanly
+      from partial failures.
+    </p>
+
+    <h2>Architecture</h2>
+    <p>
+      The first diagram focuses on the distributed platform: service registration (<code>bind</code>), discovery
+      (<code>lookup</code>), and server-to-client callback/RPC for live updates. The second diagram shows how editors
+      and viewers interact with the app over WebSockets and HTTPS, and how the client connects to storage and backend
+      services.
+    </p>
+
+    <h2>Challenges</h2>
+    <ul>
+      <li>Ordering and merging concurrent edits without losing user intent.</li>
+      <li>Connection churn, reconnects, and idempotent handling of client events.</li>
+      <li>Back-pressure and fan-out when many users share the same board.</li>
+    </ul>
+
+    <h2>Outcome</h2>
+    <p>
+      Summarize what you shipped: latency targets, concurrent users tested, or reliability notes—replace this sentence
+      with your results.
+    </p>
+
+    <div class="panel">
+      <strong style="color: var(--text); font-weight: 500;">Tech &amp; tools</strong>
+      <div class="tags">
+        <span class="tag">WebSockets</span>
+        <span class="tag">Real-time sync</span>
+        <span class="tag">Distributed systems</span>
+        <span class="tag">System design</span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

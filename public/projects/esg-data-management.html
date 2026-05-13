@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESG Analytics Dashboard — Zoe Zhang</title>
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: hsl(0, 0%, 7%);
+      --surface: hsl(240, 2%, 13%);
+      --surface-2: hsl(240, 1%, 17%);
+      --text: hsl(0, 0%, 98%);
+      --muted: hsla(0, 0%, 84%, 0.75);
+      --accent: hsl(45, 100%, 72%);
+      --border: hsl(0, 0%, 22%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .back span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 600;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      margin-bottom: 12px;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+    }
+
+    .hero iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-caption {
+      margin: 0 0 36px;
+      font-size: 13px;
+    }
+
+    .video-caption a {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .video-caption a:hover {
+      color: var(--accent);
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0 0 16px;
+      padding-left: 1.2em;
+      color: var(--muted);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-top: 24px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      color: var(--light-gray, hsl(0, 0%, 84%));
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <a class="back" href="/"><span aria-hidden="true">←</span> Back to portfolio</a>
+
+    <h1>ESG Analytics Dashboard</h1>
+    <p class="meta">Web development · Case study</p>
+
+    <div class="hero">
+      <iframe
+        src="https://www.youtube.com/embed/jdvlsevU2j4"
+        title="ESG Analytics Dashboard demo video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p class="video-caption">
+      <a href="https://youtu.be/jdvlsevU2j4" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
+    </p>
+
+    <h2>Overview</h2>
+    <p>
+      A web-based experience for collecting, validating, and reporting environmental, social, and governance (ESG)
+      data—so teams can move from scattered spreadsheets to a single source of truth with clearer audit trails.
+    </p>
+
+    <h2>Problem</h2>
+    <p>
+      Stakeholders needed consistent metrics across regions, role-based access, and exports suitable for internal
+      review—without sacrificing speed for day-to-day contributors.
+    </p>
+
+    <h2>Approach</h2>
+    <ul>
+      <li>Structured data entry flows with validation and revision history.</li>
+      <li>Role-aware views so admins, reviewers, and contributors each see the right surface.</li>
+      <li>Performance-conscious listing and filtering for large datasets.</li>
+    </ul>
+
+    <h2>Outcome</h2>
+    <p>
+      Replace this paragraph with your measurable results (time saved, error reduction, adoption, latency improvements,
+      etc.).
+    </p>
+
+    <div class="panel">
+      <strong style="color: var(--text); font-weight: 500;">Tech &amp; tools</strong>
+      <div class="tags">
+        <span class="tag">React</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">REST / API</span>
+        <span class="tag">Data validation</span>
+        <span class="tag">Accessibility</span>
+      </div>
+      <p style="margin-top: 16px; margin-bottom: 0; font-size: 13px;">
+        Edit the tags and copy in <code style="color: var(--accent);">public/projects/esg-data-management.html</code> to match your real stack.
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>
